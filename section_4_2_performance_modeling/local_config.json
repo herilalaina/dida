@@ -1,0 +1,56 @@
+{
+  "model": {
+    "fc_model": {
+      "sizes": [
+        256,
+        128,
+        64
+      ],
+      "input_norm": false,
+      "activation": "ReLU",
+      "dropout": 0.0
+    },
+    "transformer": {},
+    "post_model": {
+      "d_output": 1
+    }
+  },
+  "data": {
+    "path": "dataset_dida",
+    "validation_ds_role": "valid",
+    "num_workers": 4,
+    "batch_size": 64,
+    "slate_length": 60
+  },
+  "optimizer": {
+    "name": "Adam",
+    "args": {
+      "lr": 0.0001
+    }
+  },
+  "lr_scheduler": {
+    "name": "StepLR",
+    "args": {
+      "step_size": 500,
+      "gamma": 0.9
+    }
+  },
+  "training": {
+    "epochs": 10000,
+    "early_stopping_patience": 500,
+    "gradient_clipping_norm": null
+  },
+  "val_metric": "ndcg@5",
+  "metrics": [
+    "ndcg@1",
+    "ndcg@5",
+    "ndcg@10",
+    "mrr@10",
+    "mrr@1",
+    "mrr@10"
+  ],
+  "loss": {
+    "name": "listMLE",
+    "args": {}
+  }
+}
